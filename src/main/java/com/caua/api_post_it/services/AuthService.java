@@ -1,6 +1,7 @@
 package com.caua.api_post_it.services;
 
 import com.caua.api_post_it.dto.ResponseLoginDTO;
+import com.caua.api_post_it.dto.ResponseRegisterDTO;
 import com.caua.api_post_it.dto.UserDTO;
 import com.caua.api_post_it.mappers.UserMapper;
 import com.caua.api_post_it.models.UserModel;
@@ -42,8 +43,8 @@ public class AuthService implements UserDetailsService {
         UserModel userModel = new UserModel(userDTO.getUsername(), encryptedPassword);
         this.userRepository.save(userModel);
         String token = tokenService.generateToken(userModel);
-        ResponseLoginDTO responseLoginDTO = new ResponseLoginDTO(false,"registered with sucess",token,userMapper.mapModelToDTO(userModel));
-        return ResponseEntity.ok(responseLoginDTO);
+        ResponseRegisterDTO responseRegisterDTO = new ResponseRegisterDTO(false,"registered with sucess",token,userMapper.mapModelToDTO(userModel));
+        return ResponseEntity.ok(responseRegisterDTO);
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
