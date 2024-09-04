@@ -11,4 +11,6 @@ import java.util.List;
 public interface PostItRepository extends JpaRepository<PostItModel,Long> {
     List<PostItModel> findByAuthor(UserModel author);
     List<PostItModel> findByTitle(String title);
+
+    
 }
